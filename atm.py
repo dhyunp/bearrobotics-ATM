@@ -5,7 +5,7 @@ from bank import Bank
 
 class ATM:
     def __init__(self):
-        self.reserve = 0
+        self.reserve = 10000
         self.bank = Bank()
         self.transactions = ["balance", "deposit", "withdraw"]
         self.currentCard = None
