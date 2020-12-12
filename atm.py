@@ -9,6 +9,7 @@ class ATM:
         self.bank = Bank()
         self.transactions = ["balance", "deposit", "withdraw"]
         self.currentCard = None
+        self.currentPIN = None
 
     def insertCard(self, card: int) -> None:
         self.currentCard = card
