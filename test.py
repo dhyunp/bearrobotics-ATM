@@ -37,13 +37,17 @@ class atmTest(unittest.TestCase):
     def testAccounts(self):
         atm = ATM()
         bank = Bank()
-        # invalid card
+        # invalid card and invalid PIN
         atm.insertCard(87654321)
+        atm.insertPIN(9999)
+        atm.authenticateUser()
 
         self.assertEqual(atm.showAccounts(), None)
 
-        # valid card
+        # valid card and valid PIN
         atm.insertCard(12345678)
+        atm.insertPIN(2468)
+        atm.authenticateUser()
 
         self.assertEqual(atm.showAccounts(), bank.accountSelect(12345678))
 
@@ -55,6 +59,8 @@ class atmTest(unittest.TestCase):
 
         # valid card and valid PIN
         atm.insertCard(10001000)
+        atm.insertPIN(1234)
+        atm.authenticateUser()
         accounts = atm.showAccounts()
 
         # invalid transaction

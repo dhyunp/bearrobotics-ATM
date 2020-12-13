@@ -54,10 +54,12 @@ class Bank():
         }
         '''
 
+        # cannot deal with negative units of money
         if items["amount"] < 0:
             items["status"] = False
             return items
 
+        # transaction success
         if items["action"] == "balance":
             items["status"] = True
 
@@ -79,6 +81,7 @@ class Bank():
                 items["reserve"] -= items["amount"]
                 items["status"] = True
 
+        # update account balance
         items["balance"] = fakeBank[items["card"]
                                     ]["accounts"][items["account"]]
         return items

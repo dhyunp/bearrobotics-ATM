@@ -10,6 +10,7 @@ class ATM:
         self.transactions = ["balance", "deposit", "withdraw"]
         self.currentCard = None
         self.currentPIN = None
+        self.auth = False
 
     def insertCard(self, card: int) -> None:
         self.currentCard = card
@@ -20,10 +21,15 @@ class ATM:
         return
 
     def authenticateUser(self) -> bool:
-        return self.bank.pinCheck(self.currentCard, self.currentPIN)
+        if self.bank.pinCheck(self.currentCard, self.currentPIN):
+            self.auth = True
+        return self.auth
 
     def showAccounts(self) -> dict:
-        return self.bank.accountSelect(self.currentCard)
+        if self.auth:
+            return self.bank.accountSelect(self.currentCard)
+        else:
+            return None
 
     def performAction(self, account: str, action: str, amount: int) -> dict:
 
@@ -37,7 +43,7 @@ class ATM:
             "balance": None,
         }
 
-        if action not in self.transactions:
+        if action not in self.transactions or not self.auth:
             buf["status"] = False
         else:
             buf = self.bank.transaction(buf)

@@ -45,6 +45,9 @@ Since the project uses a fake bank information, the available card numbers and P
 기록이나 보안적인 요소는 제외함 <br />
 Records or security concerns are not considered within the scope of this project
 
+프로그램을 종료하면 ATM이 보유한 돈의 값이나 은행의 통장 값을 동기화 함 <br />
+When the program is closed, all of the values of the ATM's reserve and the bank's balances are reset
+
 ### 예시 Demo Run
 
 <img src="./demoRun1.png" align="center"><br />
